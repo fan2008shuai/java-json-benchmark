@@ -33,7 +33,7 @@ public enum Library {
     MJSON,
     UNDERSCORE_JAVA,
     PUREJSON,
-    SOFA_HESSIAN;
+    HESSIAN;
 
     public static Set<Library> fromCsv(String str) {
         if (str == null || str.trim().isEmpty()) {

@@ -1,11 +1,10 @@
 package com.github.fabienrenaud.jjb.provider;
 
-import com.caucho.hessian.io.Hessian2Output;
 import com.dslplatform.json.DslJson;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.fabienrenaud.jjb.hessian.SofaHessianDeserializer;
-import com.github.fabienrenaud.jjb.hessian.SofaHessianSerializer;
+import com.github.fabienrenaud.jjb.hessian.HessianDeserializer;
+import com.github.fabienrenaud.jjb.hessian.HessianSerializer;
 import com.google.gson.Gson;
 import com.owlike.genson.Genson;
 import flexjson.JSONDeserializer;
@@ -23,9 +22,9 @@ public interface JsonProvider<T> {
 
     Gson gson();
 
-    SofaHessianSerializer sofaHessianSerializer();
+    HessianSerializer hessianSerializer();
 
-    SofaHessianDeserializer sofaHessianDeserializer();
+    HessianDeserializer hessianDeserializer();
 
     ObjectMapper jackson();
 

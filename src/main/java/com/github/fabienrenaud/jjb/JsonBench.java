@@ -15,7 +15,7 @@ public abstract class JsonBench {
         return null;
     }
 
-    public Object sofa_hessian() throws Exception {
+    public Object hessian() throws Exception {
         return null;
     }
 

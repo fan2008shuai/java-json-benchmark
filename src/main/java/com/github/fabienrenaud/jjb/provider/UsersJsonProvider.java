@@ -1,16 +1,14 @@
 package com.github.fabienrenaud.jjb.provider;
 
-import com.caucho.hessian.io.Hessian2Output;
 import com.cedarsoftware.util.io.JsonReader;
 import com.cedarsoftware.util.io.JsonWriter;
-import com.dslplatform.json.ConfigureJava8;
 import com.dslplatform.json.DslJson;
 import com.dslplatform.json.runtime.Settings;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
-import com.github.fabienrenaud.jjb.hessian.SofaHessianDeserializer;
-import com.github.fabienrenaud.jjb.hessian.SofaHessianSerializer;
+import com.github.fabienrenaud.jjb.hessian.HessianDeserializer;
+import com.github.fabienrenaud.jjb.hessian.HessianSerializer;
 import com.github.fabienrenaud.jjb.model.Users;
 import com.google.gson.Gson;
 import com.owlike.genson.Genson;
@@ -47,9 +45,9 @@ public class UsersJsonProvider implements JsonProvider<Users> {
     private final org.apache.johnzon.mapper.Mapper johnzon;
     private final com.squareup.moshi.JsonAdapter<Users> moshi = new Moshi.Builder().build().adapter(Users.class);
 
-    private final SofaHessianSerializer sofaHessianSerializer = new SofaHessianSerializer();
+    private final HessianSerializer hessianSerializer = new HessianSerializer();
 
-    private final SofaHessianDeserializer sofaHessianDeserializer = new SofaHessianDeserializer();
+    private final HessianDeserializer hessianDeserializer = new HessianDeserializer();
 
     /*
      * DSL-json
@@ -80,13 +78,13 @@ public class UsersJsonProvider implements JsonProvider<Users> {
     }
 
     @Override
-    public SofaHessianSerializer sofaHessianSerializer() {
-        return sofaHessianSerializer;
+    public HessianSerializer hessianSerializer() {
+        return hessianSerializer;
     }
 
     @Override
-    public SofaHessianDeserializer sofaHessianDeserializer() {
-        return sofaHessianDeserializer;
+    public HessianDeserializer hessianDeserializer() {
+        return hessianDeserializer;
     }
 
     @Override

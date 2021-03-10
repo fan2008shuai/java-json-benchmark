@@ -5,7 +5,7 @@ import com.caucho.hessian.io.Hessian2Output;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class SofaHessianSerializer {
+public class HessianSerializer {
 
     public byte[] serialize(Object src, ByteArrayOutputStream byteArrayOutputStream) throws IOException {
         Hessian2Output hessian2Output = new Hessian2Output(byteArrayOutputStream);

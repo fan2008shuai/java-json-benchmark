@@ -27,7 +27,7 @@ public class UsersSource extends JsonSource<Users> {
                 dataGenerator.populate(obj, individualSize);
                 jsonAsObject[i] = obj;
 
-                jsonAsBytes[i] = provider.sofaHessianSerializer().serialize(obj, new ByteArrayOutputStream());
+                jsonAsBytes[i] = provider.hessianSerializer().serialize(obj, new ByteArrayOutputStream());
 
             }
         } catch (Exception ex) {

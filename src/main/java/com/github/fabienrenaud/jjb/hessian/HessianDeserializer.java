@@ -5,7 +5,7 @@ import com.caucho.hessian.io.Hessian2Input;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class SofaHessianDeserializer {
+public class HessianDeserializer {
 
     public Object deserializer(InputStream inputStream) throws IOException {
         Hessian2Input hessian2Input = new Hessian2Input(inputStream);

@@ -95,7 +95,10 @@ dependencies {
     annotationProcessor group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: "${jmhVersion}"
 
     // https://mvnrepository.com/artifact/com.alipay.sofa/hessian
-    implementation group: 'com.alipay.sofa', name: 'hessian', version: '4.0.4'
+//    implementation group: 'com.alipay.sofa', name: 'hessian', version: '4.0.4'
+
+    // https://mvnrepository.com/artifact/com.caucho/hessian
+    implementation group: 'com.caucho', name: 'hessian', version: '4.0.65'
 
 }
 
