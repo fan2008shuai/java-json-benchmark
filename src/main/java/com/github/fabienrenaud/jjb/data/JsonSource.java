@@ -23,14 +23,14 @@ public abstract class JsonSource<T> {
         JsonSourceInits.jsoniter();
     }
 
-    private final JsonProvider<T> provider;
+    public final JsonProvider<T> provider;
 
-    private final T[] jsonAsObject;
+    public final T[] jsonAsObject;
     private final String[] jsonAsString;
-    private final byte[][] jsonAsBytes;
+    public final byte[][] jsonAsBytes;
     private final ThreadLocal<ByteArrayInputStream[]> jsonAsByteArrayInputStream;
 
-    private final DataGenerator<T> dataGenerator;
+    public final DataGenerator<T> dataGenerator;
     private final StreamSerializer<T> streamSerializer;
     private final StreamDeserializer<T> streamDeserializer;
 
@@ -55,7 +55,7 @@ public abstract class JsonSource<T> {
         });
     }
 
-    private final void populateFields(final int quantity, final int individualSize) {
+    void populateFields(final int quantity, final int individualSize) {
         try {
             for (int i = 0; i < quantity; i++) {
                 T obj = pojoType().newInstance();

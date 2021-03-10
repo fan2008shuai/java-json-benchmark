@@ -33,6 +33,12 @@ public class Deserialization extends JsonBench {
 
     @Benchmark
     @Override
+    public Object sofa_hessian() throws Exception {
+        return JSON_SOURCE().provider().sofaHessianDeserializer().deserializer(JSON_SOURCE().nextInputStream());
+    }
+
+    @Benchmark
+    @Override
     public Object jackson_afterburner() throws IOException {
         return JSON_SOURCE().provider().jacksonAfterburner().readValue(JSON_SOURCE().nextByteArray(), JSON_SOURCE().pojoType());
     }

@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
+import com.github.fabienrenaud.jjb.hessian.SofaHessianDeserializer;
+import com.github.fabienrenaud.jjb.hessian.SofaHessianSerializer;
 import com.github.fabienrenaud.jjb.model.Clients;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -164,6 +166,16 @@ public class ClientsJsonProvider implements JsonProvider<Clients> {
         joddTypeConverterManager.register(LocalDate.class, (TypeConverter<LocalDate>) value -> LocalDate.parse((String)value));
         joddTypeConverterManager.register(OffsetDateTime.class, (TypeConverter<OffsetDateTime>) value -> OffsetDateTime.parse((String)value));
 
+    }
+
+    @Override
+    public SofaHessianSerializer sofaHessianSerializer() {
+        return null;
+    }
+
+    @Override
+    public SofaHessianDeserializer sofaHessianDeserializer() {
+        return null;
     }
 
     @Override

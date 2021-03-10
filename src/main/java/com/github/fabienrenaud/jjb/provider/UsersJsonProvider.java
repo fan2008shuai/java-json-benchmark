@@ -1,5 +1,6 @@
 package com.github.fabienrenaud.jjb.provider;
 
+import com.caucho.hessian.io.Hessian2Output;
 import com.cedarsoftware.util.io.JsonReader;
 import com.cedarsoftware.util.io.JsonWriter;
 import com.dslplatform.json.ConfigureJava8;
@@ -8,6 +9,8 @@ import com.dslplatform.json.runtime.Settings;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
+import com.github.fabienrenaud.jjb.hessian.SofaHessianDeserializer;
+import com.github.fabienrenaud.jjb.hessian.SofaHessianSerializer;
 import com.github.fabienrenaud.jjb.model.Users;
 import com.google.gson.Gson;
 import com.owlike.genson.Genson;
@@ -44,6 +47,10 @@ public class UsersJsonProvider implements JsonProvider<Users> {
     private final org.apache.johnzon.mapper.Mapper johnzon;
     private final com.squareup.moshi.JsonAdapter<Users> moshi = new Moshi.Builder().build().adapter(Users.class);
 
+    private final SofaHessianSerializer sofaHessianSerializer = new SofaHessianSerializer();
+
+    private final SofaHessianDeserializer sofaHessianDeserializer = new SofaHessianDeserializer();
+
     /*
      * DSL-json
      */
@@ -70,6 +77,16 @@ public class UsersJsonProvider implements JsonProvider<Users> {
     @Override
     public Gson gson() {
         return gson;
+    }
+
+    @Override
+    public SofaHessianSerializer sofaHessianSerializer() {
+        return sofaHessianSerializer;
+    }
+
+    @Override
+    public SofaHessianDeserializer sofaHessianDeserializer() {
+        return sofaHessianDeserializer;
     }
 
     @Override

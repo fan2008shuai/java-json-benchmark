@@ -6,6 +6,8 @@ import com.github.fabienrenaud.jjb.provider.UsersJsonProvider;
 import com.github.fabienrenaud.jjb.stream.UsersStreamDeserializer;
 import com.github.fabienrenaud.jjb.stream.UsersStreamSerializer;
 
+import java.io.ByteArrayOutputStream;
+
 /**
  * Created by frenaud on 7/23/16.
  */
@@ -15,6 +17,23 @@ public class UsersSource extends JsonSource<Users> {
 
     public UsersSource(int quantity, int individualSize) {
         super(quantity, individualSize, usersJsonProvider, new UsersGenerator(), new UsersStreamSerializer(), new UsersStreamDeserializer());
+    }
+
+    @Override
+    void populateFields(int quantity, int individualSize) {
+        try {
+            for (int i = 0; i < quantity; i++) {
+                Users obj = pojoType().newInstance();
+                dataGenerator.populate(obj, individualSize);
+                jsonAsObject[i] = obj;
+
+                jsonAsBytes[i] = provider.sofaHessianSerializer().serialize(obj, new ByteArrayOutputStream());
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.exit(1);
+        }
     }
 
     @Override

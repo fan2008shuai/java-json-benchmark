@@ -11,6 +11,7 @@ import okio.Okio;
 import org.openjdk.jmh.annotations.Benchmark;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 public class Serialization extends JsonBench {
 
@@ -24,6 +25,14 @@ public class Serialization extends JsonBench {
         StringBuilder b = JsonUtils.stringBuilder();
         JSON_SOURCE().provider().gson().toJson(JSON_SOURCE().nextPojo(), b);
         return b;
+    }
+
+    @Benchmark
+    @Override
+    public Object sofa_hessian() throws Exception {
+        ByteArrayOutputStream baos = JsonUtils.byteArrayOutputStream();
+        JSON_SOURCE().provider().sofaHessianSerializer().serialize(JSON_SOURCE().nextPojo(), baos);
+        return baos;
     }
 
     @Benchmark

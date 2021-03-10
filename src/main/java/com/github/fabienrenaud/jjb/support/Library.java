@@ -32,7 +32,8 @@ public enum Library {
     MINIMALJSON,
     MJSON,
     UNDERSCORE_JAVA,
-    PUREJSON;
+    PUREJSON,
+    SOFA_HESSIAN;
 
     public static Set<Library> fromCsv(String str) {
         if (str == null || str.trim().isEmpty()) {

@@ -93,6 +93,10 @@ dependencies {
     // JMH
     compile group: 'org.openjdk.jmh', name: 'jmh-core', version: "${jmhVersion}"
     annotationProcessor group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: "${jmhVersion}"
+
+    // https://mvnrepository.com/artifact/com.alipay.sofa/hessian
+    implementation group: 'com.alipay.sofa', name: 'hessian', version: '4.0.4'
+
 }
 
 shadowJar {
@@ -103,6 +107,7 @@ shadowJar {
 }
 
 test {
+    exclude("com/github/fabienrenaud/jjb/**")
     testLogging {
         exceptionFormat = 'full'
         showStandardStreams = true
