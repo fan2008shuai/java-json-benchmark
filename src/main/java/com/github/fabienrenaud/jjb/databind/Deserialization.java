@@ -35,7 +35,7 @@ public class Deserialization extends JsonBench {
     @Override
     public Object sofa_hessian() throws Exception {
         try {
-            return JSON_SOURCE().provider().sofaHessianDeserializer().deserializer(JSON_SOURCE().nextInputStream());
+            return JSON_SOURCE().provider().sofaHessianDeserializer().deserializer(JSON_SOURCE().nextByteArray());
         } catch (Throwable e) {
             e.printStackTrace();
             System.out.println("sofa_hessian deserializer error.......");

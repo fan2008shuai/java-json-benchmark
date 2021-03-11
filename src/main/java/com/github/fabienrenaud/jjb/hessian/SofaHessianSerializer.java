@@ -14,7 +14,6 @@ public class SofaHessianSerializer {
             hessian2Output.close();
             return byteArrayOutputStream.toByteArray();
         } catch (Throwable e) {
-            e.printStackTrace();
             System.out.println("serialize error.....");
         }
         return null;

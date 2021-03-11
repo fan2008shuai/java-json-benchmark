@@ -8,16 +8,22 @@ import com.github.fabienrenaud.jjb.JsonUtils;
 import com.github.fabienrenaud.jjb.data.JsonSource;
 import okio.BufferedSink;
 import okio.Okio;
+import org.checkerframework.checker.units.qual.C;
 import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.State;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Serialization extends JsonBench {
 
     public JsonSource JSON_SOURCE() {
         return CLI_JSON_SOURCE;
     }
+
+    private static final ConcurrentHashMap<Integer, Boolean> map = new ConcurrentHashMap<>();
 
     @Benchmark
     @Override
@@ -31,11 +37,19 @@ public class Serialization extends JsonBench {
     @Override
     public Object sofa_hessian() throws Exception {
         try {
-            ByteArrayOutputStream baos = JsonUtils.byteArrayOutputStream();
-            JSON_SOURCE().provider().sofaHessianSerializer().serialize(JSON_SOURCE().nextPojo(), baos);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            Object src = JSON_SOURCE().nextPojo();
+            byte[] data = JSON_SOURCE().provider().sofaHessianSerializer().serialize(src, baos);
+
+            Object dst = JSON_SOURCE().provider.sofaHessianDeserializer().deserializer(data);
+
+            if (map.putIfAbsent(src.hashCode(), true) == null) {
+                System.out.println("src hashcode: " + src.hashCode());
+                System.out.println("dst hashcode: " + dst.hashCode());
+            }
+
             return baos;
         } catch (Throwable e) {
-            e.printStackTrace();
             System.out.println("sofa_hessian serialize error.......");
         }
         return null;

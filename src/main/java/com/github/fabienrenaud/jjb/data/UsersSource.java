@@ -30,6 +30,9 @@ public class UsersSource extends JsonSource<Users> {
                 jsonAsBytes[i] = provider.sofaHessianSerializer().serialize(obj, new ByteArrayOutputStream());
 
             }
+
+            System.out.println("jsonAsObject.size: " + jsonAsObject.length);
+            System.out.println("jsonAsBytes.size: " + jsonAsBytes.length);
         } catch (Exception ex) {
             ex.printStackTrace();
             System.exit(1);
