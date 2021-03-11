@@ -30,9 +30,15 @@ public class Serialization extends JsonBench {
     @Benchmark
     @Override
     public Object sofa_hessian() throws Exception {
-        ByteArrayOutputStream baos = JsonUtils.byteArrayOutputStream();
-        JSON_SOURCE().provider().sofaHessianSerializer().serialize(JSON_SOURCE().nextPojo(), baos);
-        return baos;
+        try {
+            ByteArrayOutputStream baos = JsonUtils.byteArrayOutputStream();
+            JSON_SOURCE().provider().sofaHessianSerializer().serialize(JSON_SOURCE().nextPojo(), baos);
+            return baos;
+        } catch (Throwable e) {
+            e.printStackTrace();
+            System.out.println("sofa_hessian serialize error.......");
+        }
+        return null;
     }
 
     @Benchmark
