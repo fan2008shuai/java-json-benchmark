@@ -66,6 +66,10 @@ public abstract class JsonSource<T> {
                 jsonAsString[i] = json;
                 jsonAsBytes[i] = json.getBytes();
             }
+
+            System.out.println("jsonAsObject size: " + jsonAsObject.length);
+            System.out.println("jsonAsBytes size: " + jsonAsBytes.length);
+            System.out.println("jsonAsString size: " + jsonAsString.length);
         } catch (Exception ex) {
             ex.printStackTrace();
             System.exit(1);
