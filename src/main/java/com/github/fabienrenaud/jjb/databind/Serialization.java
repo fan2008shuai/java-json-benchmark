@@ -6,6 +6,7 @@ import com.bluelinelabs.logansquare.LoganSquare;
 import com.github.fabienrenaud.jjb.JsonBench;
 import com.github.fabienrenaud.jjb.JsonUtils;
 import com.github.fabienrenaud.jjb.data.JsonSource;
+import com.github.fabienrenaud.jjb.model.Users;
 import okio.BufferedSink;
 import okio.Okio;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -29,8 +30,15 @@ public class Serialization extends JsonBench {
     @Benchmark
     @Override
     public Object hessian() throws Exception {
-        ByteArrayOutputStream baos = JsonUtils.byteArrayOutputStream();
-        JSON_SOURCE().provider().hessianSerializer().serialize(JSON_SOURCE().nextPojo(), baos);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        Users src = (Users) JSON_SOURCE().nextPojo();
+        byte[] data = JSON_SOURCE().provider().hessianSerializer().serialize(src, baos);
+
+//        Users dst = (Users) JSON_SOURCE().provider().hessianDeserializer().deserializer(data);
+//        if (src.hashCode() != dst.hashCode()) {
+//            System.out.println("hessian error...");
+//        }
         return baos;
     }
 

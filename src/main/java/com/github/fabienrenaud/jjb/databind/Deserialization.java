@@ -34,7 +34,7 @@ public class Deserialization extends JsonBench {
     @Benchmark
     @Override
     public Object hessian() throws Exception {
-        return JSON_SOURCE().provider().hessianDeserializer().deserializer(JSON_SOURCE().nextInputStream());
+        return JSON_SOURCE().provider().hessianDeserializer().deserializer(JSON_SOURCE().nextByteArray());
     }
 
     @Benchmark

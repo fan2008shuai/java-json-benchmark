@@ -34,6 +34,8 @@ public class UsersSource extends JsonSource<Users> {
             ex.printStackTrace();
             System.exit(1);
         }
+        System.out.println("jsonAsObject size : " + jsonAsObject.length);
+        System.out.println("jsonAsBytes size : " + jsonAsBytes.length);
     }
 
     @Override
