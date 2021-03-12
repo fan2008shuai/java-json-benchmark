@@ -41,12 +41,16 @@ public class Serialization extends JsonBench {
             Object src = JSON_SOURCE().nextPojo();
             byte[] data = JSON_SOURCE().provider().sofaHessianSerializer().serialize(src, baos);
 
-            Object dst = JSON_SOURCE().provider.sofaHessianDeserializer().deserializer(data);
+//            Object dst = JSON_SOURCE().provider.sofaHessianDeserializer().deserializer(data);
 
-            if (map.putIfAbsent(src.hashCode(), true) == null) {
-                System.out.println("src hashcode: " + src.hashCode());
-                System.out.println("dst hashcode: " + dst.hashCode());
-            }
+//            if (map.putIfAbsent(src.hashCode(), true) == null) {
+//                System.out.println("src hashcode: " + src.hashCode());
+//                System.out.println("dst hashcode: " + dst.hashCode());
+//            }
+//            if (src.hashCode() != dst.hashCode()) {
+//                System.out.println("error...........");
+//            }
+
 
             return baos;
         } catch (Throwable e) {
